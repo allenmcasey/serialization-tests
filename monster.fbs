@@ -1,3 +1,7 @@
+// Schema for a "monster" class. Compile this using the flatc compiler
+// to generate a header file that you can use to create objects for 
+// serialization.
+
 namespace MyGame.Sample;
 
 enum Color:byte { Red = 0, Green, Blue = 2 }
