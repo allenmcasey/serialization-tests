@@ -2,8 +2,7 @@
 
 using namespace MyGame::Sample;
 
-// Example how to use FlatBuffers to create and read binary buffers.
-
+// Use FlatBuffers to create and read binary buffers.
 int main(int /*argc*/, const char * /*argv*/[]) {
   
   flatbuffers::FlatBufferBuilder builder;
@@ -55,6 +54,8 @@ int main(int /*argc*/, const char * /*argv*/[]) {
   assert(monster->mana() == 150);  // default
   assert(monster->name()->str() == "MyMonster");
 
+  // Print some test values
+  printf("HP: %d\n", monster->hp());
   printf("HP: %d\n", monster->hp());
 
   // Get and test a field of the FlatBuffer's `struct`.
