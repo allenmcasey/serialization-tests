@@ -1,14 +1,14 @@
-#include "moster_generated.h"  // Already includes "flatbuffers/flatbuffers.h".
+#include "monster_generated.h"  // Already includes "flatbuffers/flatbuffers.h".
 
 using namespace MyGame::Sample;
 
 // Example how to use FlatBuffers to create and read binary buffers.
 
 int main(int /*argc*/, const char * /*argv*/[]) {
-  // Build up a serialized buffer algorithmically:
+  
   flatbuffers::FlatBufferBuilder builder;
 
-  // First, lets serialize some weapons for the Monster: A 'sword' and an 'axe'.
+  // Serialize some weapons for the Monster: A 'sword' and an 'axe'.
   auto weapon_one_name = builder.CreateString("Sword");
   short weapon_one_damage = 3;
 
@@ -25,7 +25,7 @@ int main(int /*argc*/, const char * /*argv*/[]) {
   weapons_vector.push_back(axe);
   auto weapons = builder.CreateVector(weapons_vector);
 
-  // Second, serialize the rest of the objects needed by the Monster.
+  // Serialize the rest of the objects needed by the Monster.
   auto position = Vec3(1.0f, 2.0f, 3.0f);
 
   auto name = builder.CreateString("MyMonster");
@@ -34,8 +34,7 @@ int main(int /*argc*/, const char * /*argv*/[]) {
   auto inventory = builder.CreateVector(inv_data, 10);
 
   // Shortcut for creating monster with all fields set:
-  auto orc = CreateMonster(builder, &position, 150, 80, name, inventory,
-                           Color_Red, weapons, Equipment_Weapon, axe.Union());
+  auto orc = CreateMonster(builder, &position, 150, 80, name, inventory, Color_Red, weapons, Equipment_Weapon, axe.Union());
 
   builder.Finish(orc);  // Serialize the root of the object.
 
