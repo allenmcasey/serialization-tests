@@ -413,4 +413,4 @@ inline void FinishSizePrefixedMonsterBuffer(
 }  // namespace Sample
 }  // namespace MyGame
 
-#endif  // FLATBUFFERS_GENERATED_MOSTER_MYGAME_SAMPLE_H_
+#endif  // FLATBUFFERS_GENERATED_MONSTER_MYGAME_SAMPLE_H_
