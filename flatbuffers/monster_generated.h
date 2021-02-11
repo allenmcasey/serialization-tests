@@ -1,3 +1,7 @@
+// Header file automatically generated after compiling the
+// Flatbuffer Schema (.fbs) file using the flatc compiler.
+// This is used to create and access serialized objects.
+
 #ifndef FLATBUFFERS_GENERATED_MONSTER_MYGAME_SAMPLE_H_
 #define FLATBUFFERS_GENERATED_MONSTER_MYGAME_SAMPLE_H_
 
