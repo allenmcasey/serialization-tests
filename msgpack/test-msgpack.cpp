@@ -1,49 +1,57 @@
 #include <iostream>
+#include <chrono>
 #include <sstream>
-#include <cassert>
 #include <msgpack.hpp>
 
-struct your_type {
-    int a;
-    int b;
-    std::string s;
-    MSGPACK_DEFINE(a, b, s);
+struct testStruct {
+    
+    int int1, int2, int3, int4;
+    std::string s1, s2, s3, s4;
+    std::vector<int> intVect;
+    std::vector<std::string> strVect;
+    bool boolean;
+    
+    MSGPACK_DEFINE(int1, int2, int3, int4, s1, s2, s3, s4, intVect, strVect, boolean);
 };
-
-bool operator==(your_type const& lhs, your_type const& rhs) {
-    return lhs.a == rhs.a && lhs.b == rhs.b;
-}
 
 int main() {
 
-    int x = 5;
-    std::string test = "test1";
-    std::cout << "Size of int: " << sizeof(x) << std::endl;
-    std::cout << "Size of string: " << sizeof(test) << std::endl;
+    // create object
+    std::vector<int> testIntVector{1, 2, 3, 4, 5};
+    std::vector<std::string> testStringVector{"s1", "s2", "s3", "s4", "s5"};
+    testStruct test = {1, 2, 3, 4, "string1", "string2", "string3", "string4", testIntVector, testStringVector, true};
 
-    // packing
+    // packing (time process)
+    auto t1 = std::chrono::high_resolution_clock::now();
     std::stringstream ss;
-    std::vector<std::map<std::string, your_type> > v 
-    { 
-        { 
-            { "key1", {1,2, "test1"} },
-            { "key2", {3,4, "test2"} }
-        },
-        {
-            {"key3", {5, 6, "test3"} },
-            {"key4", {7, 8, "test4"} } 
-        }
-    };
-    msgpack::pack(ss, v);
-
-    std::cout << "Size of stringstream: " << sizeof(ss.str()) << std::endl;
+    msgpack::pack(ss, test);
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    printf("\nObject packed successfully... Time: %lld ms\n", duration);
     
-    // unpacking
+    // unpacking (time process)
+    t1 = std::chrono::high_resolution_clock::now();
     msgpack::object_handle oh = msgpack::unpack(ss.str().data(), ss.str().size());
     msgpack::object const& obj = oh.get();
-    std::cout << "object: " << obj << std::endl;
+    auto test2 = obj.as<testStruct>();
+    t2 = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    printf("Object unpacked successfully... Time: %lld ms\n", duration);
 
-    // converting
-    auto v2 = obj.as<std::vector<std::map<std::string, your_type> > >();
-    //assert(v == v2);
+    // print object contents
+    std::cout << "\nObject contents:" << std::endl;
+    printf("Object integers: %d %d %d %d\n", test2.int1, test2.int2, test2.int3, test2.int4);
+    printf("Object strings: %s %s %s %s\n", test2.s1.c_str(), test2.s2.c_str(), test2.s3.c_str(), test2.s4.c_str());
+    
+    std::cout << "Object integer vector: ";
+    for (int i = 0; i < test2.intVect.size(); i++) {
+        std::cout << test2.intVect.at(i) << " ";
+    }
+    
+    std::cout << "\nObject string vector: ";
+    for (int i = 0; i < test2.strVect.size(); i++) {
+        std::cout << test2.strVect.at(i) << " ";
+    }
+    
+    printf("\nObject boolean: %d\n", test2.boolean);
 }
