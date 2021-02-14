@@ -1,92 +1,78 @@
-#include "monster_generated.h"  // Already includes "flatbuffers/flatbuffers.h".
+#include <iostream>
+#include <chrono>
+#include "TestObject_generated.h"
 
-using namespace MyGame::Sample;
+using namespace Test;
 
-// Use FlatBuffers to create and read binary buffers.
 int main(int /*argc*/, const char * /*argv*/[]) {
-  
-  flatbuffers::FlatBufferBuilder builder;
 
-  // Serialize some weapons for the Monster: A 'sword' and an 'axe'.
-  auto weapon_one_name = builder.CreateString("Sword");
-  short weapon_one_damage = 3;
+    std::vector<int> int_vector;
+    int_vector.push_back(10);
+    int_vector.push_back(20);
+    int_vector.push_back(30);
+    int_vector.push_back(40);
+    int_vector.push_back(50);
 
-  auto weapon_two_name = builder.CreateString("Axe");
-  short weapon_two_damage = 5;
+    std::vector<std::string> string_vector;
+    string_vector.push_back("String 1");
+    string_vector.push_back("String 2");
+    string_vector.push_back("String 3");
+    string_vector.push_back("String 4");
+    string_vector.push_back("String 5");
 
-  // Use the `CreateWeapon` shortcut to create Weapons with all fields set.
-  auto sword = CreateWeapon(builder, weapon_one_name, weapon_one_damage);
-  auto axe = CreateWeapon(builder, weapon_two_name, weapon_two_damage);
+    auto t1 = std::chrono::high_resolution_clock::now();
 
-  // Create a FlatBuffer's `vector` from the `std::vector`.
-  std::vector<flatbuffers::Offset<Weapon>> weapons_vector;
-  weapons_vector.push_back(sword);
-  weapons_vector.push_back(axe);
-  auto weapons = builder.CreateVector(weapons_vector);
+    // Create object
+    flatbuffers::FlatBufferBuilder builder;
+    auto s1 = builder.CreateString("S1_ABCDEFG");
+    auto s2 = builder.CreateString("S2_ABCDEFGABCDEFG");
+    auto s3 = builder.CreateString("S3_ABCDEFGABCDEFGABCDEFGABCDEFG");
+    auto s4 = builder.CreateString("S4_ABCDEFGABCDEFGABCDEFGABCDEFGABCDEFGABCDEFGABCDEFG");
 
-  // Serialize the rest of the objects needed by the Monster.
-  auto position = Vec3(1.0f, 2.0f, 3.0f);
+    flatbuffers::Offset<flatbuffers::Vector<int32_t>> intVec = builder.CreateVector(int_vector);
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> stringVec = builder.CreateVectorOfStrings(string_vector);
 
-  auto name = builder.CreateString("MyMonster");
+    // Serialize the object
+    auto object = CreateTestObject(builder, 1, 2, 3, 4, s1, s2, s3, s4, intVec, stringVec);
+    builder.Finish(object);
 
-  unsigned char inv_data[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-  auto inventory = builder.CreateVector(inv_data, 10);
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    printf("\nObject packed successfully... Time: %lld ms\n", duration);
 
-  // Shortcut for creating monster with all fields set:
-  auto orc = CreateMonster(builder, &position, 150, 80, name, inventory, Color_Red, weapons, Equipment_Weapon, axe.Union());
+    /*======================================================================================*/
 
-  builder.Finish(orc);  // Serialize the root of the object.
+    // Deserialize the object
+    t1 = std::chrono::high_resolution_clock::now();
+    auto sentObject = GetTestObject(builder.GetBufferPointer());
+    t2 = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    printf("Object unpacked successfully... Time: %lld ms\n\n", duration);
 
-  // We now have a FlatBuffer we can store on disk or send over a network.
+    // Print object's contents
+    std::cout << "Object contents:" << std::endl;
+    printf("int1: %d\n", sentObject->int1());
+    printf("int2: %d\n", sentObject->int2());
+    printf("int3: %d\n", sentObject->int3());
+    printf("int4: %d\n", sentObject->int4());
 
-  // ** file/network code goes here :) **
-  // access builder.GetBufferPointer() for builder.GetSize() bytes
+    printf("String1: %s\n", sentObject->string1()->str().c_str());
+    printf("String2: %s\n", sentObject->string2()->str().c_str());
+    printf("String3: %s\n", sentObject->string3()->str().c_str());
+    printf("String4: %s\n", sentObject->string4()->str().c_str());
 
-  // Instead, we're going to access it right away (as if we just received it).
+    std::cout << "Int vector: ";
+    auto ints = sentObject->intVec();
+    for (unsigned int i = 0; i < ints->size(); i++) {
+        printf("%d ", ints->Get(i));
+    }
 
-  // Get access to the root:
-  auto monster = GetMonster(builder.GetBufferPointer());
+    std::cout << "\nString vector: ";
+    auto strings = sentObject->stringVec();
+    for (unsigned int i = 0; i < strings->size(); i++) {
+        printf("%s ", strings->Get(i)->str().c_str());
+    }
+    std::cout << std::endl;
 
-  int size = 0;
-
-  // Get and test some scalar types from the FlatBuffer.
-  assert(monster->hp() == 80);
-  assert(monster->mana() == 150);  // default
-  assert(monster->name()->str() == "MyMonster");
-
-  // Print some test values
-  printf("HP: %d\n", monster->hp());
-  printf("HP: %d\n", monster->hp());
-
-  // Get and test a field of the FlatBuffer's `struct`.
-  auto pos = monster->pos();
-  assert(pos);
-  assert(pos->z() == 3.0f);
-  (void)pos;
-
-  // Get a test an element from the `inventory` FlatBuffer's `vector`.
-  auto inv = monster->inventory();
-  assert(inv);
-  assert(inv->Get(9) == 9);
-  (void)inv;
-
-  // Get and test the `weapons` FlatBuffers's `vector`.
-  std::string expected_weapon_names[] = { "Sword", "Axe" };
-  short expected_weapon_damages[] = { 3, 5 };
-  auto weps = monster->weapons();
-  for (unsigned int i = 0; i < weps->size(); i++) {
-    assert(weps->Get(i)->name()->str() == expected_weapon_names[i]);
-    assert(weps->Get(i)->damage() == expected_weapon_damages[i]);
-  }
-  (void)expected_weapon_names;
-  (void)expected_weapon_damages;
-
-  // Get and test the `Equipment` union (`equipped` field).
-  assert(monster->equipped_type() == Equipment_Weapon);
-  auto equipped = static_cast<const Weapon *>(monster->equipped());
-  assert(equipped->name()->str() == "Axe");
-  assert(equipped->damage() == 5);
-  (void)equipped;
-
-  printf("The FlatBuffer was successfully created and verified!\n");
+    printf("\nThe FlatBuffer was successfully created and verified!\n");
 }
