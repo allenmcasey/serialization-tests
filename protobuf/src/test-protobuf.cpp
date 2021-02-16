@@ -1,11 +1,12 @@
 #include "TestObject.pb.h"
 #include <iostream>
-#include <chrono> 
+#include <chrono>
 
 int main() {
-    
+
     std::vector<int> intVect{1, 2, 3, 4, 5};
     std::vector<std::string> strVect{"str1", "str2", "str3", "str4", "str5"};
+    std::unordered_map<int, std::string> mapTest({{1, "val1"}, {2, "val2"}, {3, "val3"}});
     std::string data;
 
     // create object
@@ -21,6 +22,7 @@ int main() {
     testObject.set_s4("string 4");
     *testObject.mutable_strings() = {strVect.begin(), strVect.end()}; 
     *testObject.mutable_ints() = {intVect.begin(), intVect.end()};
+    *testObject.mutable_testmap() = {mapTest.begin(), mapTest.end()};
 
     // serialize object
     testObject.SerializeToString(&data);
