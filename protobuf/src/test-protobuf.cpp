@@ -37,4 +37,26 @@ int main() {
     t2 = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
     printf("Object unpacked successfully... Time: %lld ms\n\n", duration);
+
+    // access object members
+    auto int1_2 = testObject2.int1();
+    auto int2_2 = testObject2.int2();
+    auto int3_2 = testObject2.int3();
+    auto int4_2 = testObject2.int4();
+
+    auto s1_2 = testObject2.s1().c_str();
+    auto s2_2 = testObject2.s2().c_str();
+    auto s3_2 = testObject2.s3().c_str();
+    auto s4_2 = testObject2.s4().c_str();
+
+    auto intVect_2 = testObject2.mutable_ints();
+    auto strVect_2 = testObject2.mutable_strings();
+    auto mapTest2 = testObject2.mutable_testmap();
+    
+    // print certain members
+    std::cout << s1_2 << std::endl;
+    std::cout << (int4_2 + 1) << std::endl;
+    std::cout << (*intVect_2).at(3) << std::endl;
+    std::cout << (*strVect_2).at(2) << std::endl;
+    std::cout << (*mapTest2)[3] << std::endl;
 }
