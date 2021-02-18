@@ -30,6 +30,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -46,7 +49,7 @@ struct TableStruct_TestObject_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,11 +59,45 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 class TestObject;
 class TestObjectDefaultTypeInternal;
 extern TestObjectDefaultTypeInternal _TestObject_default_instance_;
+class TestObject_TestMapEntry_DoNotUse;
+class TestObject_TestMapEntry_DoNotUseDefaultTypeInternal;
+extern TestObject_TestMapEntry_DoNotUseDefaultTypeInternal _TestObject_TestMapEntry_DoNotUse_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::TestObject* Arena::CreateMaybeMessage<::TestObject>(Arena*);
+template<> ::TestObject_TestMapEntry_DoNotUse* Arena::CreateMaybeMessage<::TestObject_TestMapEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 // ===================================================================
+
+class TestObject_TestMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestObject_TestMapEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestObject_TestMapEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  TestObject_TestMapEntry_DoNotUse();
+  explicit TestObject_TestMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TestObject_TestMapEntry_DoNotUse& other);
+  static const TestObject_TestMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestObject_TestMapEntry_DoNotUse*>(&_TestObject_TestMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "TestObject.TestMapEntry.value");
+ }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TestObject_2eproto);
+    return ::descriptor_table_TestObject_2eproto.file_level_metadata[0];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
 
 class TestObject PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestObject) */ {
@@ -103,7 +140,7 @@ class TestObject PROTOBUF_FINAL :
                &_TestObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(TestObject& a, TestObject& b) {
     a.Swap(&b);
@@ -171,11 +208,13 @@ class TestObject PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kIntsFieldNumber = 9,
     kStringsFieldNumber = 10,
+    kTestMapFieldNumber = 11,
     kS1FieldNumber = 5,
     kS2FieldNumber = 6,
     kS3FieldNumber = 7,
@@ -230,6 +269,23 @@ class TestObject PROTOBUF_FINAL :
   const std::string& _internal_strings(int index) const;
   std::string* _internal_add_strings();
   public:
+
+  // map<int32, string> testMap = 11;
+  int testmap_size() const;
+  private:
+  int _internal_testmap_size() const;
+  public:
+  void clear_testmap();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >&
+      _internal_testmap() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >*
+      _internal_mutable_testmap();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >&
+      testmap() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >*
+      mutable_testmap();
 
   // string s1 = 5;
   void clear_s1();
@@ -341,6 +397,11 @@ class TestObject PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > ints_;
   mutable std::atomic<int> _ints_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> strings_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      TestObject_TestMapEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> testmap_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s1_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s2_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s3_;
@@ -361,6 +422,8 @@ class TestObject PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // TestObject
 
 // int32 int1 = 1;
@@ -808,9 +871,40 @@ TestObject::mutable_strings() {
   return &strings_;
 }
 
+// map<int32, string> testMap = 11;
+inline int TestObject::_internal_testmap_size() const {
+  return testmap_.size();
+}
+inline int TestObject::testmap_size() const {
+  return _internal_testmap_size();
+}
+inline void TestObject::clear_testmap() {
+  testmap_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >&
+TestObject::_internal_testmap() const {
+  return testmap_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >&
+TestObject::testmap() const {
+  // @@protoc_insertion_point(field_map:TestObject.testMap)
+  return _internal_testmap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >*
+TestObject::_internal_mutable_testmap() {
+  return testmap_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >*
+TestObject::mutable_testmap() {
+  // @@protoc_insertion_point(field_mutable_map:TestObject.testMap)
+  return _internal_mutable_testmap();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
