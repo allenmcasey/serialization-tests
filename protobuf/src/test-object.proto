@@ -14,4 +14,6 @@ message TestObject {
 
     repeated int32 ints = 9;
     repeated string strings = 10;
+
+    map<int32, string> testMap = 11; 
 }
