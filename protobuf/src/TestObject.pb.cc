@@ -14,6 +14,11 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+extern PROTOBUF_INTERNAL_EXPORT_TestObject_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestObject_TestMapEntry_DoNotUse_TestObject_2eproto;
+class TestObject_TestMapEntry_DoNotUseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TestObject_TestMapEntry_DoNotUse> _instance;
+} _TestObject_TestMapEntry_DoNotUse_default_instance_;
 class TestObjectDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TestObject> _instance;
@@ -28,14 +33,36 @@ static void InitDefaultsscc_info_TestObject_TestObject_2eproto() {
   }
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestObject_TestObject_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TestObject_TestObject_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestObject_TestObject_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TestObject_TestObject_2eproto}, {
+      &scc_info_TestObject_TestMapEntry_DoNotUse_TestObject_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_TestObject_2eproto[1];
+static void InitDefaultsscc_info_TestObject_TestMapEntry_DoNotUse_TestObject_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::_TestObject_TestMapEntry_DoNotUse_default_instance_;
+    new (ptr) ::TestObject_TestMapEntry_DoNotUse();
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestObject_TestMapEntry_DoNotUse_TestObject_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TestObject_TestMapEntry_DoNotUse_TestObject_2eproto}, {}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_TestObject_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_TestObject_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_TestObject_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_TestObject_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  PROTOBUF_FIELD_OFFSET(::TestObject_TestMapEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::TestObject_TestMapEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::TestObject_TestMapEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::TestObject_TestMapEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::TestObject, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -51,37 +78,60 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_TestObject_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::TestObject, s4_),
   PROTOBUF_FIELD_OFFSET(::TestObject, ints_),
   PROTOBUF_FIELD_OFFSET(::TestObject, strings_),
+  PROTOBUF_FIELD_OFFSET(::TestObject, testmap_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::TestObject)},
+  { 0, 7, sizeof(::TestObject_TestMapEntry_DoNotUse)},
+  { 9, -1, sizeof(::TestObject)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TestObject_TestMapEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_TestObject_default_instance_),
 };
 
 const char descriptor_table_protodef_TestObject_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\020TestObject.proto\"\223\001\n\nTestObject\022\014\n\004int"
+  "\n\020TestObject.proto\"\356\001\n\nTestObject\022\014\n\004int"
   "1\030\001 \001(\005\022\014\n\004int2\030\002 \001(\005\022\014\n\004int3\030\003 \001(\005\022\014\n\004i"
   "nt4\030\004 \001(\005\022\n\n\002s1\030\005 \001(\t\022\n\n\002s2\030\006 \001(\t\022\n\n\002s3\030"
   "\007 \001(\t\022\n\n\002s4\030\010 \001(\t\022\014\n\004ints\030\t \003(\005\022\017\n\007strin"
-  "gs\030\n \003(\tb\006proto3"
+  "gs\030\n \003(\t\022)\n\007testMap\030\013 \003(\0132\030.TestObject.T"
+  "estMapEntry\032.\n\014TestMapEntry\022\013\n\003key\030\001 \001(\005"
+  "\022\r\n\005value\030\002 \001(\t:\0028\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_TestObject_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_TestObject_2eproto_sccs[1] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_TestObject_2eproto_sccs[2] = {
   &scc_info_TestObject_TestObject_2eproto.base,
+  &scc_info_TestObject_TestMapEntry_DoNotUse_TestObject_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_TestObject_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_TestObject_2eproto = {
-  false, false, descriptor_table_protodef_TestObject_2eproto, "TestObject.proto", 176,
-  &descriptor_table_TestObject_2eproto_once, descriptor_table_TestObject_2eproto_sccs, descriptor_table_TestObject_2eproto_deps, 1, 0,
+  false, false, descriptor_table_protodef_TestObject_2eproto, "TestObject.proto", 267,
+  &descriptor_table_TestObject_2eproto_once, descriptor_table_TestObject_2eproto_sccs, descriptor_table_TestObject_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_TestObject_2eproto::offsets,
-  file_level_metadata_TestObject_2eproto, 1, file_level_enum_descriptors_TestObject_2eproto, file_level_service_descriptors_TestObject_2eproto,
+  file_level_metadata_TestObject_2eproto, 2, file_level_enum_descriptors_TestObject_2eproto, file_level_service_descriptors_TestObject_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_TestObject_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_TestObject_2eproto)), true);
+
+// ===================================================================
+
+TestObject_TestMapEntry_DoNotUse::TestObject_TestMapEntry_DoNotUse() {}
+TestObject_TestMapEntry_DoNotUse::TestObject_TestMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void TestObject_TestMapEntry_DoNotUse::MergeFrom(const TestObject_TestMapEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata TestObject_TestMapEntry_DoNotUse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+void TestObject_TestMapEntry_DoNotUse::MergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::Message& other) {
+  ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom(other);
+}
+
 
 // ===================================================================
 
@@ -92,7 +142,8 @@ class TestObject::_Internal {
 TestObject::TestObject(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   ints_(arena),
-  strings_(arena) {
+  strings_(arena),
+  testmap_(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:TestObject)
@@ -102,6 +153,7 @@ TestObject::TestObject(const TestObject& from)
       ints_(from.ints_),
       strings_(from.strings_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  testmap_.MergeFrom(from.testmap_);
   s1_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_s1().empty()) {
     s1_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_s1(), 
@@ -177,6 +229,7 @@ void TestObject::Clear() {
 
   ints_.Clear();
   strings_.Clear();
+  testmap_.Clear();
   s1_.ClearToEmpty();
   s2_.ClearToEmpty();
   s3_.ClearToEmpty();
@@ -280,6 +333,18 @@ const char* TestObject::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // map<int32, string> testMap = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&testmap_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<90>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -393,6 +458,47 @@ failure:
     target = stream->WriteString(10, s, target);
   }
 
+  // map<int32, string> testMap = 11;
+  if (!this->_internal_testmap().empty()) {
+    typedef ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_pointer
+        ConstPtr;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::SortItem< ::PROTOBUF_NAMESPACE_ID::int32, ConstPtr > SortItem;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::CompareByFirstField<SortItem> Less;
+    struct Utf8Check {
+      static void Check(ConstPtr p) {
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+          p->second.data(), static_cast<int>(p->second.length()),
+          ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+          "TestObject.TestMapEntry.value");
+      }
+    };
+
+    if (stream->IsSerializationDeterministic() &&
+        this->_internal_testmap().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->_internal_testmap().size()]);
+      typedef ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::size_type size_type;
+      size_type n = 0;
+      for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_iterator
+          it = this->_internal_testmap().begin();
+          it != this->_internal_testmap().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      for (size_type i = 0; i < n; i++) {
+        target = TestObject_TestMapEntry_DoNotUse::Funcs::InternalSerialize(11, items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second, target, stream);
+        Utf8Check::Check(&(*items[static_cast<ptrdiff_t>(i)].second));
+      }
+    } else {
+      for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_iterator
+          it = this->_internal_testmap().begin();
+          it != this->_internal_testmap().end(); ++it) {
+        target = TestObject_TestMapEntry_DoNotUse::Funcs::InternalSerialize(11, it->first, it->second, target, stream);
+        Utf8Check::Check(&(*it));
+      }
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -430,6 +536,15 @@ size_t TestObject::ByteSizeLong() const {
   for (int i = 0, n = strings_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
       strings_.Get(i));
+  }
+
+  // map<int32, string> testMap = 11;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_testmap_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, std::string >::const_iterator
+      it = this->_internal_testmap().begin();
+      it != this->_internal_testmap().end(); ++it) {
+    total_size += TestObject_TestMapEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
   // string s1 = 5;
@@ -521,6 +636,7 @@ void TestObject::MergeFrom(const TestObject& from) {
 
   ints_.MergeFrom(from.ints_);
   strings_.MergeFrom(from.strings_);
+  testmap_.MergeFrom(from.testmap_);
   if (from.s1().size() > 0) {
     _internal_set_s1(from._internal_s1());
   }
@@ -570,6 +686,7 @@ void TestObject::InternalSwap(TestObject* other) {
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   ints_.InternalSwap(&other->ints_);
   strings_.InternalSwap(&other->strings_);
+  testmap_.Swap(&other->testmap_);
   s1_.Swap(&other->s1_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   s2_.Swap(&other->s2_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   s3_.Swap(&other->s3_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
@@ -589,6 +706,9 @@ void TestObject::InternalSwap(TestObject* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::TestObject_TestMapEntry_DoNotUse* Arena::CreateMaybeMessage< ::TestObject_TestMapEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::TestObject_TestMapEntry_DoNotUse >(arena);
+}
 template<> PROTOBUF_NOINLINE ::TestObject* Arena::CreateMaybeMessage< ::TestObject >(Arena* arena) {
   return Arena::CreateMessageInternal< ::TestObject >(arena);
 }
