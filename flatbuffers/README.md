@@ -9,6 +9,3 @@ This is an approximate growth of 1330%
 The average time to create and serialize the test object was approximately 12 ms.<br/>
 The average time to deserialize the test object was <1 ms.<br/>
 The size of a serialized object is 228 bytes (this doesn't include the map structure that the other libraries were tested with).
-
-### Other Notes ###
-FlatBuffers doesn't natively support map structures. They can still be serialized, but it is more difficult to accomplish than with the other two libraries.
