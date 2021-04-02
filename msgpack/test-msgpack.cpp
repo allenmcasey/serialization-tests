@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <sstream>
+#include <fstream>
 #include <msgpack.hpp>
 
 struct testStruct {
@@ -31,18 +32,35 @@ int main() {
     auto t1 = std::chrono::high_resolution_clock::now();
     std::stringstream ss;
     msgpack::pack(ss, test);
+    
+    std::ofstream outFile;
+    outFile.open("test_out.txt");
+    outFile << ss.rdbuf();
+    outFile.close();
+
+    ss.seekg(0, std::ios::end);
+    int size = ss.tellg();
     auto t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
-    printf("\nObject packed successfully... Time: %lld ms\n", duration);
-    
+    printf("\nObject packed successfully... Time: %lld ms\nObject size: %d bytes\n", duration, size);
+
     // unpacking
     t1 = std::chrono::high_resolution_clock::now();
-    msgpack::object_handle oh = msgpack::unpack(ss.str().data(), ss.str().size());
+    std::ifstream file("test_out.txt");
+    std::stringstream buffer;
+    if ( file )
+    {
+        buffer << file.rdbuf();
+        file.close();
+    }
+ 
+    msgpack::object_handle oh = msgpack::unpack(buffer.str().data(), buffer.str().size());
     msgpack::object const& obj = oh.get();
     auto test2 = obj.as<testStruct>();
     t2 = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
     printf("Object unpacked successfully... Time: %lld ms\n", duration);
+
 
     // Printing results
     std::cout << "\nObject contents:\n-------------------------" << std::endl;
