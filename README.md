@@ -1,6 +1,6 @@
 # serialization-test
 
-This repo is a "playground" to explore three serialization libraries: Protobuf, FlatBuffers, and MsgPack. The goal is to determine the suitability of each library for applications in a messaging-intensive HPC environment involving the passing of fairly complex structures, and this evaluation process is still in the early stages of development. 
+The purpose of this repository is to explore the performance of three serialization libraries: Protobuf, Flatbuffers, and MsgPack. The goal is to determine the suitability of each library for applications in a messaging-intensive HPC environment involving the passing of fairly complex structures, and this evaluation process is still in the early stages. 
 
 So far, each library is tested using a small and simple TestObject of the same structure in order to assess performance consistently and fairly. The fields within each test obect are as follows:
 
