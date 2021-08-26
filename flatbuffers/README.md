@@ -1,5 +1,17 @@
 ## FlatBuffers notes
 
+### Configuring Flatbuffers ###
+
+(coming soon)
+
+### Running the Serialization Test ###
+
+First, navigate to the `/flatbuffers/src` directory. Then, compile the schema and source files, and finish by executing the serialization. This process is done with the following commands:
+
+`flatc --cpp test-object.fbs` <br>
+`g++ -std=c++17 test-flatbuffers.cpp -o fbout` <br>
+`./fbout`
+
 ### File sizes ###
 The size of the .fbs schema file that defines the test object is 14 lines.<br/>
 The size of the associated automatically-generated header file is 200 lines.<br/>
