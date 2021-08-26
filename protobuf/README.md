@@ -1,6 +1,6 @@
 ## Protobuf notes
 
-### Configuring Flatbuffers ###
+### Configuring Protobuf ###
 
 (coming soon)
 
