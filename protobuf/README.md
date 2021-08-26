@@ -1,5 +1,18 @@
 ## Protobuf notes
 
+### Configuring Flatbuffers ###
+
+(coming soon)
+
+### Running the Serialization Test ###
+
+First, navigate to the /protobuf/src directory. Then, compile the .proto and source files, and finish by executing the serialization. This process is done with the following commands:
+
+`protoc -I=. --cpp_out=. test-object.proto` <br>
+`g++ -std=c++17 TestSerialization-proto.cpp TestObject.pb.cc -lprotobuf -pthread` <br>
+`./a.out`
+
+
 ### File Sizes ###
 The TestObject message format is defined in a .proto file that is 13 lines long. <br/>
 When compiled, this .proto results in two files being generated - a .ph.h file and a .pb.cc file. <br/>
